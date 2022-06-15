@@ -3,9 +3,9 @@
   import {LineStyle}  from  'lightweight-charts';
   import {Chart, LineSeries, PriceLine}  from  'svelte-lightweight-charts';
 	
-  import {data}   from   './assets/data.js';
- 
-  const options = {	
+  import  data   from   './assets/data.js';
+
+  const options = {
         width:  800,
         height: 480,
         layout: {  textColor: '#d1d4dc',
@@ -27,36 +27,41 @@
         },
         handleScroll: { vertTouchDrag: false }
     }
-
+	
+   // min/avg/max values
     let minPrice = data[0].value;
     let maxPrice = minPrice;
-	
-    for(let d of data) { 
+	  let avgPrice = 0;
+    for(let d of data) {
 			    const price = d.value;
-					if (price>maxPrice) maxPrice = price;
+          avgPrice+= price;
+					if (price>maxPrice)  maxPrice = price;
 			    
-			    if (price<minPrice) minPrice = price;
+			    if (price<minPrice)  minPrice = price;
     }
-	
-    const avgPrice = (maxPrice + minPrice) / 2;
+    avgPrice = avgPrice / data.length;
+
 	
 	  const ref= e=>{ e?.timeScale().fitContent() }
 
-let m, t=false;
+    let container, t = false;
 
 	  function resizer(e) { t=!t;
-                          options.width = m.clientWidth;
-                          options.height= m.clientHeight;
+                          options.width = container.clientWidth;
+                          options.height= container.clientHeight;
 		}
     window.onload= ()=>resizer();
+    //console.log(...data)
 </script>
+
 
 <svelte:window on:resize={resizer} />
 
 <main>
-  <h1> Price lines with titles </h1>
-	{#key t}
-  <div id='container'   bind:this={m}>
+
+ <h1> Price lines with titles </h1>
+ {#key t}
+  <div id='container'   bind:this={container}>
   <Chart {...options}  {ref} >
        <LineSeries  {data}
 									  color="#adfb"
@@ -90,7 +95,7 @@ let m, t=false;
         </LineSeries>
     </Chart>
   </div>
-    {/key}
+ {/key}
 
 </main>
 
