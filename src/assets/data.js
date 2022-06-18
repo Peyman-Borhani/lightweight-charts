@@ -5,7 +5,10 @@
 
 const  _template_ = {   Build: true,
                         Format: 'array of objects',
-                        Tree: 'time', //can have Branchs if required
+                        Tree: 'time', // root object of objects
+                        // Sub:'booked' time: booked:{...} sub of a tree
+                        // Sub: describes object of objects in a tree
+
                         // lowercase keys are actual data structure:
                         time: {year: 2018, month: 1, day: 1},
                         value: 1.1  //Raw_Data, type: float values  
