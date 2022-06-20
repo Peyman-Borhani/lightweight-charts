@@ -1,18 +1,19 @@
 /*  Constructible Objects Data Build
-    _template_ describes the actual object:
+    _template_ describes the model, meta-data and user data
     {time: {year: 2018, month: 1, day: 1}, value: 1.1}
 */
 
-const  _template_ = {   Build: true,
-                        Format: 'array of objects',
-                        Tree: 'time', // root object of objects
-                        // Sub:'booked' time: booked:{...} sub of a tree
-                        // Sub: describes object of objects in a tree
+const  _template_ = /* Capitalized KVs are Descriptive meta-data.(internal usage) */
+                {   Build: true,
+                    Format: 'array of objects',
+                    Tree: 'time', // root object of objects
+                    // Sub:'booked' time: booked:{...} sub of a tree
+                    // Sub: describes object of objects, branchs in a tree
 
-                        // lowercase keys are actual data structure:
-                        time: {year: 2018, month: 1, day: 1},
-                        value: 1.1  //Raw_Data, type: float values  
-                    }               
+                    // lowercase KVs are user data structure:
+                    time: {year: 2018, month: 1, day: 1},
+                    value: 1.1  //Raw_Data, type: float values  
+                }               
 /*  Raw_Data consist of main values, to keep it simple, minimal and
     efficient without redundant info, keys, meta or extra data as long
     as it's possible to fetch the data in original form at loading time.
