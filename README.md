@@ -4,7 +4,7 @@ This demo app example uses [svelte-lightweight-charts](https://github.com/trash-
 
 The goal is to improve the code, app looks, maybe the functionality of the original sample, and also to compare tradingview's chart with my own UI-Kit's vis/charting components.
 
-[Repl Demo](https://svelte.dev/repl/ddf1df9490a8471b82d14f56b4ffefdd?version=3.48.0)
+[Live REPL Demo App](https://svelte.dev/repl/ddf1df9490a8471b82d14f56b4ffefdd?version=3.48.0)
   .
 
 ## Installing
