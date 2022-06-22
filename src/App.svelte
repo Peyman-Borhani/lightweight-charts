@@ -50,8 +50,7 @@
                           options.width = container.clientWidth;
                           options.height= container.clientHeight;
 		}
-    window.onload= ()=>resizer();
-    //console.log(...data)
+    window.onload= setTimeout(resizer,2);  //console.log(...data)
 </script>
 
 
