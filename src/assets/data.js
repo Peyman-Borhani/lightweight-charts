@@ -3,19 +3,25 @@
 //  _template_ describes the model, meta-data and user data
 //  add only what is needed to describe your data for internal usage.
 
-const  template = {   // Capitalized items describes data. (or meta-data)
-                Data: {Model: 'raw',  Type: 'float',  Store: 'array'}, // raw or model name
-                Export: {Name: 'data', Type: 'object', Format: 'array of objects'},
+const  template =  //Capitalized items describes internal data.(meta-data)
+            {   Data:   { Is:   'array',    Content: 'raw',
+                          Type: 'float',    Store: 'array',
+                          Name: 'Raw_Data'
+                },
+                Export: { Is:   'array',    Content: 'JS objects', 
+                          Type: 'object',   Store: 'array',
+                          Name: 'data'
+                },
                 Build:  year=> build_Data(year), //to describe/call builder function
-                Generate: ['object', 'structure', 'full year date'],
-                Root:   ['time', 'value'], // root items
-                Tree:   ['data.time.*', 'value'],  //Tree Hierarchy
-                // Sub: ['time.x.y.z'] optional(same as data structure bellow)
+                Gen:  ['object',  'structure',  'full year date'], //Generates
+                Tree: ['time.*',  'value'],  //Tree Hierarchy
+             // Sub: tree branchs (optional, same structure in bellow object)
     
                 //exported data structure (lowercase items)
-                time: {year: 2018, month: 1, day: 1},
-                value: 1.1  //Raw_Data, type: float values  
+                time: {year: 2018,  month: 1,  day: 1},
+                value: 1.1  // Raw_Data, type: float values  
             }
+
 /*  Raw data consist of main values, simple, minimal data store without 
     redundant info, keys, meta... can export as is or used to build into
     exported data. */
