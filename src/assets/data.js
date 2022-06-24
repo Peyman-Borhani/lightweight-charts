@@ -1,31 +1,34 @@
-//  Constructible Objects Data Build
+/*  Constructible Objects Data Build
 
-//  _template_ describes the model, meta-data and user data
-//  add only what is needed to describe your data for internal usage.
-
-const  template = { //Capitalized items describes internal or meta data
-                Data:   { Is:   'array',    Content: 'raw',
-                          Type: 'float',    Store:   'array',
-                          Name: 'Raw_Data'
+template provides data model, structure, meta data or other information.
+template data is either descriptive to user, referential or used by code.
+*/
+const  template = {
+                Input:  { Is:    'array',   Name:  'Raw_Data',
+                          Type:  'float',   Value: 'primitive',
+                          Store: 'this',    // (this file) / local / link
+                          Ref:   'this'     // dir path / external link
                 },
-                Export: { Is:   'array',    Content: 'JS objects', 
-                          Type: 'object',   Store:   'array',
-                          Name: 'data'
+                Output: { Is:    'array',   Name:  'data',
+                          Type:  'object',  Value: 'composed', //array/object...
+                          Store:  false,    // this / local / link
+                          Ref:   'Input'    // this / dir path / ext Link
                 },
-                Build:  year=> build_Data(year), //to describe/call builder function
+                // to declare or call build function  -- year(any) is the input
+                Build:  year=> build_Data(year), 
 
-                Gen:   {  Struct: true,     Items: 'Tree',
-                          Type:  'date',    Info:  'full year date per day'
-                }, // Gen = Genrative
+                Generate: { From:  'Model',    Structure:  true,     
+                            Type:  'date',     Sequential: true,
+                            Info:  'full year dates per day + value'
+                },
+                // Tree/Sub optional as we have 'Model' structure
+                Tree:   ['time.*',  'value'],
 
-                Tree:   ['time.*',  'value'],  // Tree structure
-                // Sub: tree branchs (optional, same structure in items bellow)
-
-                //exported items data structure (writen in lowercase)
-                time: {year: 2018,  month: 1,  day: 1}, 
-                value: 1.1  // Raw_Data, type: float values 
-            }
-
+                //exported data model/structure
+                Model: { time: {year: 2018,  month: 1,  day: 1}, 
+                         value: 1.1  // float values from Raw_Data, 
+                }
+        }
 /*  Raw data consist of main values, simple, minimal data store without 
     redundant info, keys, meta... can export as is or used to build into
     exported data. */
@@ -53,7 +56,7 @@ function  build_Data(y) {
     }
 }
 //Building the template.  executing build_Data(2018) but from template
-template.Build(template.time.year);
+template.Build(template.Items.time.year);
 
 export  default  data;
 
